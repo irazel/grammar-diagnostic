@@ -137,25 +137,67 @@ function saveCurrentSectionData() {
 }
 
 // Form Submission
+// Form Submission
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     
     if (validateCurrentSection()) {
         saveCurrentSectionData();
+        
+        // ===== NETLIFY FORMS: Populate hidden fields =====
+        populateHiddenFields(sessionData);
+        
+        // Submit to Netlify Forms
+        submitToNetlify();
+        
+        // Then show feedback
         generateFeedback();
         showModal();
-        
-        // Simulate data submission (in real app, would be AJAX)
-        console.log('Session 0 Data:', sessionData);
-        
-        // Here you would typically send data to your server
-        // fetch('/api/submit-diagnostic', {
-        //     method: 'POST',
-        //     body: JSON.stringify(sessionData),
-        //     headers: {'Content-Type': 'application/json'}
-        // })
     }
 });
+
+function populateHiddenFields(data) {
+    // Map your sessionData to hidden form fields
+    document.querySelector('input[name="experience"]').value = data.profile.experience || '';
+    document.querySelector('input[name="context"]').value = data.profile.context.join(', ') || '';
+    document.querySelector('input[name="classSize"]').value = data.profile.classSize || '';
+    document.querySelector('input[name="levels"]').value = data.profile.levels.join(', ') || '';
+    document.querySelector('input[name="confidence"]').value = data.audit.confidence || '';
+    document.querySelector('input[name="application"]').value = data.audit.application || '';
+    document.querySelector('input[name="feedback"]').value = data.audit.feedback || '';
+    document.querySelector('input[name="traditional"]').value = data.audit.traditional || '';
+    document.querySelector('input[name="understanding"]').value = data.audit.understanding || '';
+    document.querySelector('input[name="challengeTopic"]').value = data.challenges.challengeTopic || '';
+    document.querySelector('input[name="challengeReason"]').value = data.challenges.challengeReason || '';
+    document.querySelector('input[name="commonError"]').value = data.challenges.commonError || '';
+    document.querySelector('input[name="studentExample"]').value = data.challenges.studentExample || '';
+    document.querySelector('input[name="hope"]').value = data.challenges.hope || '';
+    document.querySelector('input[name="commitment"]').value = data.commitment.join(', ') || '';
+    document.querySelector('input[name="email"]').value = data.email || '';
+}
+
+function submitToNetlify() {
+    // Create a hidden iframe or use fetch to submit
+    // Option A: Simple form submission (recommended)
+    const form = document.getElementById('diagnosticForm');
+    
+    // Create a FormData object
+    const formData = new FormData(form);
+    
+    // Submit via fetch
+    fetch('/', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log('Successfully submitted to Netlify Forms');
+    })
+    .catch(error => {
+        console.error('Error submitting to Netlify:', error);
+        // Optional: Save to localStorage as backup
+        localStorage.setItem('diagnostic_backup', JSON.stringify(sessionData));
+    });
+}
 
 // Feedback Generation
 function generateFeedback() {
