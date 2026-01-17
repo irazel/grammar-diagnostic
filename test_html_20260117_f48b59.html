@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar MasterClass: Pre-Program Diagnostic</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <i class="fas fa-chalkboard-teacher logo-icon"></i>
+                <div>
+                    <h1 class="logo-title">Grammar MasterClass</h1>
+                    <p class="logo-subtitle">Teaching Grammar with Purpose</p>
+                </div>
+            </div>
+            <div class="program-badge">
+                <span>Session 0: Pre-Program Diagnostic</span>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-steps">
+                <div class="step active" data-step="1"><span>Profile</span></div>
+                <div class="step" data-step="2"><span>Self-Audit</span></div>
+                <div class="step" data-step="3"><span>Challenges</span></div>
+                <div class="step" data-step="4"><span>Feedback</span></div>
+            </div>
+        </div>
+
+        <!-- Form Sections -->
+        <form id="diagnosticForm">
+            <!-- Section 1: Professional Profile -->
+            <section id="section1" class="form-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-circle"></i> Professional Profile</h2>
+                    <p>Help us understand your teaching context</p>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">1. Teaching Experience</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="experience" value="0-3" required>
+                            <span class="radio-text">0-3 years</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="experience" value="4-10">
+                            <span class="radio-text">4-10 years</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="experience" value="11+">
+                            <span class="radio-text">11+ years</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">2. Primary Teaching Context (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="context" value="Private Language Institute">
+                            <span class="checkbox-text">Private Language Institute</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="context" value="Public/State School">
+                            <span class="checkbox-text">Public/State School</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="context" value="University">
+                            <span class="checkbox-text">University</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="context" value="Corporate/Adult Education">
+                            <span class="checkbox-text">Corporate/Adult Education</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="context" value="Private Tutoring">
+                            <span class="checkbox-text">Private One-on-One Tutoring</span>
+                        </label>
+                        <label class="checkbox-option other-option">
+                            <input type="checkbox" id="otherContextCheckbox">
+                            <span class="checkbox-text">Other:</span>
+                            <input type="text" id="otherContext" placeholder="Please specify" class="other-input">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group grid-2">
+                    <div>
+                        <label class="question-label">3. Average Class Size</label>
+                        <select name="classSize" class="dropdown" required>
+                            <option value="">Select...</option>
+                            <option value="1-10">1-10 students</option>
+                            <option value="11-25">11-25 students</option>
+                            <option value="26-40">26-40 students</option>
+                            <option value="40+">40+ students</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="question-label">Common Levels You Teach</label>
+                        <select name="levels" class="dropdown" required multiple>
+                            <option value="A1-A2">A1-A2 (Beginner/Elementary)</option>
+                            <option value="B1-B2">B1-B2 (Intermediate)</option>
+                            <option value="C1-C2">C1-C2 (Advanced)</option>
+                        </select>
+                        <small class="hint">Hold Ctrl/Cmd to select multiple</small>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-next" onclick="nextSection(2)">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- Section 2: Self-Audit -->
+            <section id="section2" class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-check"></i> Reflective Self-Audit</h2>
+                    <p>Rate your current teaching practices</p>
+                </div>
+
+                <div class="audit-table">
+                    <div class="audit-header">
+                        <div class="statement-col">Statement</div>
+                        <div class="rating-col">Strongly Disagree</div>
+                        <div class="rating-col">Disagree</div>
+                        <div class="rating-col">Neutral</div>
+                        <div class="rating-col">Agree</div>
+                        <div class="rating-col">Strongly Agree</div>
+                    </div>
+
+                    <div class="audit-row">
+                        <div class="statement">I feel confident explaining the logic behind English grammar rules.</div>
+                        <div class="ratings">
+                            <label><input type="radio" name="confidence" value="1" required> 1</label>
+                            <label><input type="radio" name="confidence" value="2"> 2</label>
+                            <label><input type="radio" name="confidence" value="3"> 3</label>
+                            <label><input type="radio" name="confidence" value="4"> 4</label>
+                            <label><input type="radio" name="confidence" value="5"> 5</label>
+                        </div>
+                    </div>
+
+                    <div class="audit-row">
+                        <div class="statement">My students can use grammar rules in exercises but struggle in spontaneous communication.</div>
+                        <div class="ratings">
+                            <label><input type="radio" name="application" value="1" required> 1</label>
+                            <label><input type="radio" name="application" value="2"> 2</label>
+                            <label><input type="radio" name="application" value="3"> 3</label>
+                            <label><input type="radio" name="application" value="4"> 4</label>
+                            <label><input type="radio" name="application" value="5"> 5</label>
+                        </div>
+                    </div>
+
+                    <div class="audit-row">
+                        <div class="statement">I have a clear system for giving feedback on grammar errors.</div>
+                        <div class="ratings">
+                            <label><input type="radio" name="feedback" value="1" required> 1</label>
+                            <label><input type="radio" name="feedback" value="2"> 2</label>
+                            <label><input type="radio" name="feedback" value="3"> 3</label>
+                            <label><input type="radio" name="feedback" value="4"> 4</label>
+                            <label><input type="radio" name="feedback" value="5"> 5</label>
+                        </div>
+                    </div>
+
+                    <div class="audit-row">
+                        <div class="statement">I often teach grammar in the way I was taught.</div>
+                        <div class="ratings">
+                            <label><input type="radio" name="traditional" value="1" required> 1</label>
+                            <label><input type="radio" name="traditional" value="2"> 2</label>
+                            <label><input type="radio" name="traditional" value="3"> 3</label>
+                            <label><input type="radio" name="traditional" value="4"> 4</label>
+                            <label><input type="radio" name="traditional" value="5"> 5</label>
+                        </div>
+                    </div>
+
+                    <div class="audit-row">
+                        <div class="statement">I understand why my Spanish/Portuguese-speaking students make specific errors.</div>
+                        <div class="ratings">
+                            <label><input type="radio" name="understanding" value="1" required> 1</label>
+                            <label><input type="radio" name="understanding" value="2"> 2</label>
+                            <label><input type="radio" name="understanding" value="3"> 3</label>
+                            <label><input type="radio" name="understanding" value="4"> 4</label>
+                            <label><input type="radio" name="understanding" value="5"> 5</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-prev" onclick="prevSection()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" class="btn btn-next" onclick="nextSection(3)">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- Section 3: Challenges -->
+            <section id="section3" class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-exclamation-circle"></i> Identifying Your Challenges</h2>
+                    <p>Share your biggest grammar teaching headaches</p>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">4. What is your SINGLE MOST CHALLENGING grammar area to teach?</label>
+                    <select name="challengeTopic" class="dropdown" required onchange="showCustomInput(this, 'customChallenge')">
+                        <option value="">Select a topic...</option>
+                        <option value="Present Perfect">Present Perfect</option>
+                        <option value="Articles (a/an/the)">Articles (a/an/the)</option>
+                        <option value="Conditionals">Conditionals</option>
+                        <option value="Phrasal Verbs">Phrasal Verbs</option>
+                        <option value="Modals (would/could/should)">Modals (would/could/should)</option>
+                        <option value="Prepositions">Prepositions</option>
+                        <option value="Tense System">Tense System</option>
+                        <option value="Passive Voice">Passive Voice</option>
+                        <option value="Reported Speech">Reported Speech</option>
+                        <option value="other">Other (please specify)</option>
+                    </select>
+                    <div id="customChallenge" class="custom-input-container" style="display: none;">
+                        <input type="text" name="customChallenge" placeholder="Please specify your challenge..." class="text-input">
+                    </div>
+                    
+                    <label class="question-label">Why is it challenging?</label>
+                    <textarea name="challengeReason" class="text-area" placeholder="Briefly explain your struggle with this topic..." required></textarea>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">5. What is the MOST PERSISTENT grammar error your LATAM learners make?</label>
+                    <div class="example-box">
+                        <div class="example-header">
+                            <span>Common LATAM Error Examples:</span>
+                            <button type="button" class="example-toggle" onclick="toggleExamples()">Show Examples</button>
+                        </div>
+                        <div id="errorExamples" class="example-content">
+                            <ul>
+                                <li>"She is doctor." (Article omission)</li>
+                                <li>"If I would have time, I would travel." (Conditional error)</li>
+                                <li>"I have 20 years old." (Literal translation)</li>
+                                <li>"He said me that..." (Preposition error)</li>
+                                <li>"I am working here since 2020." (Present Perfect confusion)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <input type="text" name="commonError" class="text-input" placeholder="e.g., 'She is doctor.' (Article omission)" required>
+                    
+                    <label class="question-label">Provide a REAL example from a student:</label>
+                    <textarea name="studentExample" class="text-area" placeholder="Write the exact sentence you've seen from a student..." required></textarea>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">6. What is your BIGGEST QUESTION or HOPE for this MasterClass?</label>
+                    <textarea name="hope" class="text-area" placeholder="What do you most want to walk away with?..." required></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-prev" onclick="prevSection()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" class="btn btn-next" onclick="nextSection(4)">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- Section 4: Commitment & Feedback -->
+            <section id="section4" class="form-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-handshake"></i> Commitment & Submission</h2>
+                    <p>Finalize your participation</p>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">7. I commit to participating actively by:</label>
+                    <div class="commitment-grid">
+                        <label class="commitment-option">
+                            <input type="checkbox" name="commitment" value="attendance">
+                            <div class="commitment-card">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Attending all live sessions</span>
+                            </div>
+                        </label>
+                        <label class="commitment-option">
+                            <input type="checkbox" name="commitment" value="tasks">
+                            <div class="commitment-card">
+                                <i class="fas fa-tasks"></i>
+                                <span>Completing practical tasks</span>
+                            </div>
+                        </label>
+                        <label class="commitment-option">
+                            <input type="checkbox" name="commitment" value="sharing">
+                            <div class="commitment-card">
+                                <i class="fas fa-comments"></i>
+                                <span>Sharing experiences in forum</span>
+                            </div>
+                        </label>
+                        <label class="commitment-option">
+                            <input type="checkbox" name="commitment" value="application">
+                            <div class="commitment-card">
+                                <i class="fas fa-chalkboard"></i>
+                                <span>Applying new ideas in class</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="question-label">Email for feedback and updates (optional):</label>
+                    <input type="email" name="email" class="text-input" placeholder="your.email@example.com">
+                    <small class="hint">We'll send your personalized feedback here</small>
+                </div>
+
+                <div class="consent-box">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="consent" required>
+                        <span class="checkbox-text">I understand that my responses are confidential and will be used exclusively to enhance the relevance of the MasterClass.</span>
+                    </label>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-prev" onclick="prevSection()"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="submit" class="btn btn-submit">Submit Diagnostic <i class="fas fa-paper-plane"></i></button>
+                </div>
+            </section>
+        </form>
+
+        <!-- Results Modal (Hidden until submission) -->
+        <div id="resultsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-chart-line"></i> Your Personalized Feedback</h2>
+                    <button type="button" class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="feedbackContent">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                    <div class="next-steps">
+                        <h3><i class="fas fa-arrow-right"></i> Next Steps</h3>
+                        <ol>
+                            <li>Save or print this feedback for reference</li>
+                            <li>Join our pre-session forum discussion (link will be emailed)</li>
+                            <li>Prepare one grammar question for Session 1</li>
+                            <li>Session 1: "Rethinking Grammar" starts [Date]</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="downloadFeedback()">
+                        <i class="fas fa-download"></i> Download Feedback
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
